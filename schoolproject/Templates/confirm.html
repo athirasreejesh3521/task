@@ -1,0 +1,51 @@
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-9">
+
+    <title>ABC SCHOOL</title>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="description" content="{% block metadescription %}{% endblock %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<br>
+<center>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:1200px;heigth:50px;">
+  <a class="navbar-brand" href="{% url 'school:home' %}">ABC School Store</a>
+  <button class="navbar-toggler" type="button"  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav_item active">
+        <a class="nav-link" href="{% url 'school:home' %}">Home </a>
+      </li>
+      <li class="nav_item justify-content-right" style = "position:absolute; left:850px;">
+          <form class="form-inline" >
+        <span class="hello-msg">Hello Welcome to ABC School store</span>
+          </form>
+      </li>
+    </ul>
+</div>
+</nav>
+<dialog open>
+  <p> THANKS FOR YOUR KIND ATTENTION....WAIT TILL YOU RECIEVE FURTHER DETAIL!!!</p>
+    <center>
+        <a class="btn btn-warning" href="{% url 'school:home' %}">HOME</a>
+        <a class="btn btn-warning" href="{% url 'school:getdata' %}">BACK</a>
+    </center>
+
+</dialog>
+
+
+{% endblock %}

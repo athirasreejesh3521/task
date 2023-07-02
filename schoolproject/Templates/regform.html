@@ -1,0 +1,120 @@
+{% include 'header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-9">
+
+    <title>ABC SCHOOL</title>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="description" content="{% block metadescription %}{% endblock %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<br>
+<center>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:1200px;heigth:50px;">
+  <a class="navbar-brand" href="{% url 'school:home' %}">ABC School Store</a>
+  <button class="navbar-toggler" type="button"  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav_item active">
+        <a class="nav-link" href="{% url 'school:home' %}">Home </a>
+      </li>
+      <li class="nav_item justify-content-right" style = "position:absolute; left:850px;">
+          <form class="form-inline" >
+        <span class="hello-msg">Hello Welcome to ABC School store</span>
+          </form>
+      </li>
+    </ul>
+</div>
+</nav>
+<br>
+<form>
+  <h5><b>ENTER THE NAME :  <input type="text" name="type" placeholder="NAME"><br></h5>
+  <h5><b>ENTER THE DOB :  <input type="date" name="DOB" placeholder="dd/mm/yyyy"><br></h5>
+  <h5><b>ENTER THE AGE :  <input type="text" name="age" placeholder="AGE AS ON 01/01/2023"></h5>
+  <h5><label for="gender">CHOOSE A GENDER:</label>
+    <select name="gender" id="gender">
+      <option value="Select">Select</option>
+      <option value="female">MALE</option>
+      <option value="male">FEMALE</option>
+      <option value="transgender">TRANSGENDER</option>
+    </select>
+  </h5>
+  <h5><b>ENTER THE PHONE NUMBER : <input type="text" name="country code"  value="+91" size="2"/>    <input type="text" name="phone" size="10"/></h5>
+  <h5><b>ENTER THE MAIL ID :  <input type="email" name="email" placeholder="EMAIL ID"></h5>
+  <h5><b><label>ENTER THE ADDRESS : </label><textarea cols="80" rows="4" value="address"></textarea></h5>
+  <h5><b>ENTER THE PINCODE :  <input type="text" name="pincode" placeholder="PINCODE"></h5>
+  <h5><b></b><label>SELECT THE DEPARTMENT :</label>
+            <select name="dept" id="department" >
+                <option value="0">--Select Department--</option>
+                {% for item in department  %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+  <h5><b></b><label>SELECT THE COURSE : </label>
+            <select name="courses" id="Course" >
+               <option value="0">--Select Course--</option>
+                {% for item in courses  %}
+                <option value="{{ item.department_id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+  </h5>
+    <script>
+
+    $(document).ready(function(){
+    var department = $("#department");
+    var Course = $("#Course");
+    var $options = Course.find('option');
+    department.on('change',function(){
+        Course.html($options.filter('[value="'+ this.value  +'"]'));
+    }).trigger('change');
+    });
+    </script>
+
+  <h5><label for="purpose">CHOOSE A PURPOSE:</label>
+    <select name="purpose" id="purpose">
+      <option value="Select">Select</option>
+      <option value="Order">Place Order</option>
+      <option value="Enquiry">Enquiry</option>
+      <option value="Return">Return</option>
+      <option value="Feedback">Feedback</option>
+    </select>
+  </h5>
+
+  <h5><b>ENTER THE MATERIALS :<br>
+
+    <form action="/action_page.php">
+      <input type="checkbox">   Notebook<br>
+      <input type="checkbox">   Pen<br>
+      <input type="checkbox">   Textbooks<br>
+      <input type="checkbox">   Exam papers<br>
+      <input type="checkbox">   A4 Sheets<br>
+      <input type="checkbox">   Notepads<br>
+      <input type="checkbox">   Geometry Box<br>
+      <input type="checkbox">   Marker<br>
+      <input type="checkbox">   Scale<br>
+      <input type="checkbox">   File<br>
+    </form>
+
+  </h5><br>
+
+  <a class="btn btn-warning" href="{% url 'school:confirm' %}">SUBMIT</a>
+  <a class="btn btn-warning" href="{% url 'school:home' %}">LOGOUT</a>
+
+</form>
+</center>
+</body>
+</html>
+{% endblock %}
